@@ -11,117 +11,117 @@ class PluginRealauth extends GatewayPlugin
     function getVariables()
     {
         $variables = array (
-            /*T*/'Plugin Name'/*/T*/ => array (
+            lang('Plugin Name') => array (
                                 'type'          =>'hidden',
-                                'description'   =>/*T*/'How CE sees this plugin (not to be confused with the Signup Name)'/*/T*/,
-                                'value'         =>/*T*/'RealAuth Gateway'/*/T*/
+                                'description'   =>lang('How CE sees this plugin (not to be confused with the Signup Name)'),
+                                'value'         =>lang('RealAuth Gateway')
                                ),
-            /*T*/'RealAuth Merchant ID'/*/T*/ => array (
+            lang('RealAuth Merchant ID') => array (
                                 'type'          =>'text',
-                                'description'   =>/*T*/'Please enter your Realex Payments Assigned Merchant ID Here.'/*/T*/,
+                                'description'   =>lang('Please enter your Realex Payments Assigned Merchant ID Here.'),
                                 'value'         =>''
                                ),
-            /*T*/'RealAuth Shared Secret'/*/T*/ => array (
+            lang('RealAuth Shared Secret') => array (
                                 'type'          =>'password',
-                                'description'   =>/*T*/'Please enter your Realex Payments Shared Secret Here.'/*/T*/,
+                                'description'   =>lang('Please enter your Realex Payments Shared Secret Here.'),
                                 'value'         =>''
                                ),
-            /*T*/'RealAuth Subaccount'/*/T*/ => array (
+            lang('RealAuth Subaccount') => array (
                                 'type'          =>'text',
-                                'description'   =>/*T*/'Please enter your Realex Payments Subaccount to use Here.'/*/T*/,
+                                'description'   =>lang('Please enter your Realex Payments Subaccount to use Here.'),
                                 'value'         =>''
                                ),
-            /*T*/'Accept CC Number'/*/T*/ => array (
+            lang('Accept CC Number') => array (
                                 'type'          =>'hidden',
-                                'description'   =>/*T*/'Selecting YES allows the entering of CC numbers when using this plugin type. No will prevent entering of cc information'/*/T*/,
+                                'description'   =>lang('Selecting YES allows the entering of CC numbers when using this plugin type. No will prevent entering of cc information'),
                                 'value'         =>'1'
                                ),
 
-            /*T*/'Visa'/*/T*/ => array (
+            lang('Visa') => array (
                                 'type'          =>'yesno',
-                                'description'   =>/*T*/'Select YES to allow Visa card acceptance with this plugin.  No will prevent this card type.'/*/T*/,
+                                'description'   =>lang('Select YES to allow Visa card acceptance with this plugin.  No will prevent this card type.'),
                                 'value'         =>'1'
                                ),
-            /*T*/'MasterCard'/*/T*/ => array (
+            lang('MasterCard') => array (
                                 'type'          =>'yesno',
-                                'description'   =>/*T*/'Select YES to allow MasterCard acceptance with this plugin. No will prevent this card type.'/*/T*/,
+                                'description'   =>lang('Select YES to allow MasterCard acceptance with this plugin. No will prevent this card type.'),
                                 'value'         =>'1'
                                ),
-            /*T*/'AmericanExpress'/*/T*/ => array (
+            lang('AmericanExpress') => array (
                                 'type'          =>'yesno',
-                                'description'   =>/*T*/'Select YES to allow American Express card acceptance with this plugin. No will prevent this card type.'/*/T*/,
+                                'description'   =>lang('Select YES to allow American Express card acceptance with this plugin. No will prevent this card type.'),
                                 'value'         =>'1'
                                ),
 
-            /*T*/'LaserCard'/*/T*/ => array (
+            lang('LaserCard') => array (
                                 'type'          =>'yesno',
-                                'description'   =>/*T*/'Select YES to allow LaserCard card acceptance with this plugin. No will prevent this card type.'/*/T*/,
+                                'description'   =>lang('Select YES to allow LaserCard card acceptance with this plugin. No will prevent this card type.'),
                                 'value'         =>'1'
                                ),
-            /*T*/'DinersClub'/*/T*/ => array (
+            lang('DinersClub') => array (
                                 'type'          =>'yesno',
-                                'description'   =>/*T*/'Select YES to allow Diners Club card acceptance with this plugin. No will prevent this card type.'/*/T*/,
+                                'description'   =>lang('Select YES to allow Diners Club card acceptance with this plugin. No will prevent this card type.'),
                                 'value'         =>'1'
                                ),
-//            /*T*/'Switch'/*/T*/ => array (
+//            lang('Switch') => array (
 //                                'type'          =>'yesno',
-//                                'description'   =>/*T*/'Select YES to allow Switch card acceptance with this plugin. No will prevent this card type.'/*/T*/,
+//                                'description'   =>lang('Select YES to allow Switch card acceptance with this plugin. No will prevent this card type.'),
 //                                'value'         =>'1'
 //                               ),
 
-            /*T*/'Invoice After Signup'/*/T*/ => array (
+            lang('Invoice After Signup') => array (
                                 'type'          =>'yesno',
-                                'description'   =>/*T*/'Select YES if you want an invoice sent to the customer after signup is complete.'/*/T*/,
+                                'description'   =>lang('Select YES if you want an invoice sent to the customer after signup is complete.'),
                                 'value'         =>'1'
                                ),
-            /*T*/'Signup Name'/*/T*/ => array (
+            lang('Signup Name') => array (
                                 'type'          =>'text',
-                                'description'   =>/*T*/'Select the name to display in the signup process for this payment type. Example: eCheck or Credit Card.'/*/T*/,
+                                'description'   =>lang('Select the name to display in the signup process for this payment type. Example: eCheck or Credit Card.'),
                                 'value'         =>'Credit Card'
                                ),
-            /*T*/'Payment Form Title'/*/T*/ => array(
+            lang('Payment Form Title') => array(
                                 'type'          =>'text',
-                                'description'   =>/*T*/'The Payment Form will only be displayed when extra user input is required, i.e. when using Verified By Visa, MaterCard SecureCode or DialVerify.'/*/T*/,
+                                'description'   =>lang('The Payment Form will only be displayed when extra user input is required, i.e. when using Verified By Visa, MaterCard SecureCode or DialVerify.'),
                                 'value'         =>''
                                ),
-            /*T*/'Payment Form Header'/*/T*/ => array(
+            lang('Payment Form Header') => array(
                                 'type'          =>'textarea',
-                                'description'   =>/*T*/'The Payment Form will only be displayed when extra user input is required, i.e. when using Verified By Visa, MaterCard SecureCode or DialVerify. HTML is accepted.'/*/T*/,
+                                'description'   =>lang('The Payment Form will only be displayed when extra user input is required, i.e. when using Verified By Visa, MaterCard SecureCode or DialVerify. HTML is accepted.'),
                                 'value'         =>''
                                ),
-            /*T*/'Receipt Page Header'/*/T*/ => array(
+            lang('Receipt Page Header') => array(
                                 'type'          =>'textarea',
-                                'description'   =>/*T*/'The Receipt Page will only be displayed when extra user input is required, i.e. when using Verified By Visa, MaterCard SecureCode or DialVerify. HTML is accepted.'/*/T*/,
+                                'description'   =>lang('The Receipt Page will only be displayed when extra user input is required, i.e. when using Verified By Visa, MaterCard SecureCode or DialVerify. HTML is accepted.'),
                                 'value'         =>''
                                ),
-            /*T*/'Receipt Page Footer'/*/T*/ => array(
+            lang('Receipt Page Footer') => array(
                                 'type'          =>'textarea',
-                                'description'   =>/*T*/'The Receipt Footer will only be displayed when extra user input is required, i.e. when using Verified By Visa, MaterCard SecureCode or DialVerify. HTML is accepted.'/*/T*/,
+                                'description'   =>lang('The Receipt Footer will only be displayed when extra user input is required, i.e. when using Verified By Visa, MaterCard SecureCode or DialVerify. HTML is accepted.'),
                                 'value'         =>''
                                ),
-            /*T*/'Dummy Plugin'/*/T*/ => array (
+            lang('Dummy Plugin') => array (
                                 'type'          =>'hidden',
-                                'description'   =>/*T*/'1 = Only used to specify a billing type for a customer. 0 = full fledged plugin requiring complete functions'/*/T*/,
+                                'description'   =>lang('1 = Only used to specify a billing type for a customer. 0 = full fledged plugin requiring complete functions'),
                                 'value'         =>'0'
                                ),
-            /*T*/'Auto Payment'/*/T*/ => array (
+            lang('Auto Payment') => array (
                                 'type'          =>'hidden',
-                                'description'   =>/*T*/'No description'/*/T*/,
+                                'description'   =>lang('No description'),
                                 'value'         =>'1'
                                ),
-            /*T*/'30 Day Billing'/*/T*/ => array (
+            lang('30 Day Billing') => array (
                                 'type'          =>'hidden',
-                                'description'   =>/*T*/'Select YES if you want ClientExec to treat monthly billing by 30 day intervals.  If you select NO then the same day will be used to determine intervals.'/*/T*/,
+                                'description'   =>lang('Select YES if you want ClientExec to treat monthly billing by 30 day intervals.  If you select NO then the same day will be used to determine intervals.'),
                                 'value'         =>'0'
                                ),
-            /*T*/"Check CVV2"/*/T*/ => array (
+            lang("Check CVV2") => array (
                                 "type"          =>"hidden",
-                                "description"   =>/*T*/"Select YES if you want to accept CVV2 for this plugin."/*/T*/,
+                                "description"   =>lang("Select YES if you want to accept CVV2 for this plugin."),
                                 "value"         =>"0"
                                ),
-//            /*T*/"Check Issue Number"/*/T*/ => array (
+//            lang("Check Issue Number") => array (
 //                                "type"          =>"hidden",
-//                                "description"   =>/*T*/"Please enter a list of the credit card types, separated by comma, that you want to accept Issue Number for this plugin."/*/T*/,
+//                                "description"   =>lang("Please enter a list of the credit card types, separated by comma, that you want to accept Issue Number for this plugin."),
 //                                "value"         =>"Switch" //"Visa,MasterCard,AmericanExpress,Discover,LaserCard,DinersClub,Switch"
 //                               ),
         );
