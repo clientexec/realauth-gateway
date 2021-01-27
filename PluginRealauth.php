@@ -71,7 +71,7 @@ class PluginRealauth extends GatewayPlugin
 
             lang('Invoice After Signup') => array (
                                 'type'          =>'yesno',
-                                'description'   =>lang('Select YES if you want an invoice sent to the customer after signup is complete.'),
+                                'description'   =>lang('Select YES if you want an invoice sent to the client after signup is complete.'),
                                 'value'         =>'1'
                                ),
             lang('Signup Name') => array (
@@ -101,18 +101,13 @@ class PluginRealauth extends GatewayPlugin
                                ),
             lang('Dummy Plugin') => array (
                                 'type'          =>'hidden',
-                                'description'   =>lang('1 = Only used to specify a billing type for a customer. 0 = full fledged plugin requiring complete functions'),
+                                'description'   =>lang('1 = Only used to specify a billing type for a client. 0 = full fledged plugin requiring complete functions'),
                                 'value'         =>'0'
                                ),
             lang('Auto Payment') => array (
                                 'type'          =>'hidden',
                                 'description'   =>lang('No description'),
                                 'value'         =>'1'
-                               ),
-            lang('30 Day Billing') => array (
-                                'type'          =>'hidden',
-                                'description'   =>lang('Select YES if you want ClientExec to treat monthly billing by 30 day intervals.  If you select NO then the same day will be used to determine intervals.'),
-                                'value'         =>'0'
                                ),
             lang("Check CVV2") => array (
                                 "type"          =>"hidden",
@@ -152,46 +147,46 @@ class PluginRealauth extends GatewayPlugin
             $cPlugin->setAction('refund');
 
             $response = $this->PlaceRealexRefund($params, $timestamp, $orderid);
-        }else{
+        } else {
             $isRefund = false;
             $cPlugin->setAction('charge');
 
             $response = $this->PlaceRealexPayment($params, $timestamp, $orderid);
         }
 
-        if(!$response){
+        if (!$response) {
               $cPlugin->PaymentRejected($this->user->lang("There was not response from RealAuth. Please double check your information"));
               return $this->user->lang("There was not response from RealAuth. Please double check your information");
         }
 
-        if (is_a($response, 'CE_Error')){
+        if (is_a($response, 'CE_Error')) {
             $cPlugin->PaymentRejected($this->user->lang("There was an error performing this operation.")." ".$response->getMessage());
             return $this->user->lang("There was an error performing this operation.")." ".$response->getMessage();
         }
 
-        if(isset($response['response']['#']['result'][0]['#'])){
-            if ($isRefund){
-                if($response['response']['#']['result'][0]['#'] == '00'){
+        if (isset($response['response']['#']['result'][0]['#'])) {
+            if ($isRefund) {
+                if ($response['response']['#']['result'][0]['#'] == '00') {
                     $cPlugin->PaymentAccepted($params['invoiceTotal'], "RealAuth refund of {$params['invoiceTotal']} was successfully processed.", $orderid);
                     return array('AMOUNT' => $params['invoiceTotal']);
-                }else{
+                } else {
                     $rejectDetails = '';
 
-                    if(isset($response['response']['#']['message'][0]['#'])){
+                    if (isset($response['response']['#']['message'][0]['#'])) {
                         $rejectDetails = ' '.$response['response']['#']['message'][0]['#'];
                     }
 
                     $cPlugin->PaymentRejected("RealAuth refund of {$params['invoiceTotal']} was rejected.".$rejectDetails);
                     return 'Refund rejected by credit card gateway provider';
                 }
-            }else{
-                if($response['response']['#']['result'][0]['#'] == '00'){
+            } else {
+                if ($response['response']['#']['result'][0]['#'] == '00') {
                     $cPlugin->PaymentAccepted($params['invoiceTotal'], "RealAuth payment of {$params['invoiceTotal']} was accepted.", $orderid);
                     return '';
-                }else{
+                } else {
                     $rejectDetails = '';
 
-                    if(isset($response['response']['#']['message'][0]['#'])){
+                    if (isset($response['response']['#']['message'][0]['#'])) {
                         $rejectDetails = ' '.$response['response']['#']['message'][0]['#'];
                     }
 
@@ -199,14 +194,15 @@ class PluginRealauth extends GatewayPlugin
                     return 'Payment rejected by credit card gateway provider';
                 }
             }
-        }else{
+        } else {
             $cPlugin->PaymentRejected($this->user->lang("The response from RealAuth was not recognized."));
             return $this->user->lang("The response from RealAuth was not recognized.");
         }
     }
 
     function credit($params)
-    {}
+    {
+    }
 
 //    function credit($params)
 //    {
@@ -214,7 +210,8 @@ class PluginRealauth extends GatewayPlugin
 //        return $this->autopayment($params);
 //    }
 
-    function PlaceRealexPayment($params, $timestamp, $orderid){
+    function PlaceRealexPayment($params, $timestamp, $orderid)
+    {
         $currency = new Currency($this->user);
         $amount = $currency->format($params['currencytype'], $params['invoiceTotal'], false)*pow(10, $currency->getPrecision($params["currencytype"]));
 
@@ -419,14 +416,15 @@ class PluginRealauth extends GatewayPlugin
 
         $response = NE_Network::curlRequest($this->settings, $url, $xml, $header, true);
 
-        if ($response && !is_a($response, 'CE_Error')){
+        if ($response && !is_a($response, 'CE_Error')) {
             $response = XmlFunctions::xmlize($response);
         }
 
         return $response;
     }
 
-    function PlaceRealexRefund($params, $timestamp, $orderid){
+    function PlaceRealexRefund($params, $timestamp, $orderid)
+    {
         //THIS PLUGIN DOES NOT REFUND YET
     }
 
@@ -444,11 +442,11 @@ class PluginRealauth extends GatewayPlugin
         $cardtype = 'UNKNOW';
 
         $cc = new CreditCard();
-        foreach($cards AS $key => $card){
+        foreach ($cards as $key => $card) {
             $errornumber = '';
             $errortext   = '';
 
-            if($cc->checkCreditCard($cardnumber, $card, $errornumber, $errortext)){
+            if ($cc->checkCreditCard($cardnumber, $card, $errornumber, $errortext)) {
                 $cardtype = $key;
                 break;
             }
@@ -457,4 +455,3 @@ class PluginRealauth extends GatewayPlugin
         return $cardtype;
     }
 }
-?>
