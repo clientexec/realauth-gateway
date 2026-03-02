@@ -200,8 +200,9 @@ class PluginRealauth extends GatewayPlugin
         }
     }
 
-    function credit($params)
+    public function credit($params)
     {
+        return $this->user->lang("This payment gateway does not support refunds.");
     }
 
 //    function credit($params)
