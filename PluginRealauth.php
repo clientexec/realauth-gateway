@@ -415,7 +415,7 @@ class PluginRealauth extends GatewayPlugin
                          "Connection: close; Keep-Alive",
                         );
 
-        $response = NE_Network::curlRequest($this->settings, $url, $xml, $header, true);
+        $response = NE_Network::curlRequest($this->settings, $url, $xml, $header, false);
 
         if ($response && !is_a($response, 'CE_Error')) {
             $response = XmlFunctions::xmlize($response);
